@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+
+    <property scope="context" name="LOG_PATH" value="${LOG_PATH:-logs}"/>
+
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/waxberry-auth.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 按天轮转 -->
+            <fileNamePattern>${LOG_PATH}/waxberry-auth.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 保留30天的历史记录 -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+   <logger name="org.springframework.security" level="trace" additivity="false">
+       <appender-ref ref="CONSOLE"/>
+   </logger>
+    <logger name="org.springframework.web" level="trace" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+    <logger name="com.jiangxue.waxberry" level="debug" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+</configuration>

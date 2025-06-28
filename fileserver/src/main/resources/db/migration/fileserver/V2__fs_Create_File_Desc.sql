@@ -1,0 +1,20 @@
+CREATE TABLE fs_file_desc (
+     id BIGINT AUTO_INCREMENT PRIMARY KEY COMMENT '主键ID',
+     file_name VARCHAR(255) NOT NULL COMMENT '文件名',
+     suffix_name VARCHAR(50) COMMENT '文件后缀',
+     file_size BIGINT COMMENT '文件大小（字节）',
+     file_path VARCHAR(500) NOT NULL COMMENT 'MinIO存储路径',
+     delete_flag BOOLEAN DEFAULT FALSE COMMENT '逻辑删除标记',
+     down_load_count INT DEFAULT 0 COMMENT '下载次数',
+     row_create_time DATETIME COMMENT '创建时间',
+     row_create VARCHAR(100) COMMENT '创建人',
+     row_create_client VARCHAR(100) COMMENT '创建客户端',
+     row_end_time DATETIME COMMENT '结束时间',
+     security_level VARCHAR(50) COMMENT '安全级别',
+     md5 VARCHAR(64) COMMENT '文件MD5',
+     file_encrypt BOOLEAN DEFAULT FALSE COMMENT '是否加密',
+     INDEX idx_file_name (file_name),
+     INDEX idx_file_path (file_path),
+     INDEX idx_row_create_time (row_create_time),
+     INDEX idx_delete_flag (delete_flag)
+) COMMENT='文件信息表';

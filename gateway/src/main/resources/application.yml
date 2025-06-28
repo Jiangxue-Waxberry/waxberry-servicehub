@@ -1,0 +1,61 @@
+server:
+  address: 0.0.0.0
+  port: 8000
+
+spring:
+  application:
+    name: waxberry-gateway
+  
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  webflux:
+    multipart:
+      max-in-memory-size: 10MB
+      max-disk-usage-per-part: 100MB
+      max-parts: 128
+  codec:
+    max-in-memory-size: 100MB
+  
+  # OAuth2 Resource Server 配置
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9030
+          jwk-set-uri: http://localhost:9030/oauth2/jwks
+  
+  cloud:
+    gateway:
+      routes:
+        - id: chat-server
+          uri: http://localhost:8000
+          predicates:
+            - Path=/core/**
+          filters:
+            - StripPrefix=1
+            - OAuth2Authentication
+            - PreserveHostHeader
+        - id: sandbox-server
+          uri: http://localhost:8888
+          predicates:
+            - Path=/sandboxes/**
+          filters:
+            - OAuth2Authentication
+            - PreserveHostHeader
+            - name: RequestSize
+              args:
+                maxSize: 100MB
+        - id: service-hub
+          uri: http://localhost:9030
+          predicates:
+            - Path=/fs/**, /mgr/**, /auth/**,/oauth2/**, /login/**, /.well-known/**, /userinfo, /connect/**
+          filters:
+            - PreserveHostHeader
+
+      httpclient:
+        use-system-dns: true
+  data:
+    redis:
+      host: localhost

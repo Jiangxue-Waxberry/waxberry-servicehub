@@ -1,0 +1,6 @@
+ com.jiangxue.framework.common.autoconfigure.MultiModuleFlywayMigrationAutoConfiguration
+ com.jiangxue.framework.common.autoconfigure.RequestLoggingFilterConfiguration
+ com.jiangxue.framework.common.autoconfigure.ExceptionHandlerAutoConfiguration
+ com.jiangxue.framework.common.autoconfigure.JacksonConfiguration
+ com.jiangxue.framework.common.autoconfigure.LocaleConfiguration
+ com.jiangxue.framework.common.autoconfigure.SecurityAutoConfiguration

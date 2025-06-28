@@ -1,0 +1,20 @@
+CREATE TABLE mgr_comments_comment (
+  id                  VARCHAR(50) NOT NULL COMMENT '主键ID',
+  content             VARCHAR(500) NOT NULL COMMENT '正文内容',
+  user_id             VARCHAR(50) NOT NULL COMMENT '作者ID',
+  user_name           VARCHAR(400) NOT NULL COMMENT '作者名称',
+  subject_id          VARCHAR(50) NOT NULL COMMENT '主体ID',
+  parent_id           VARCHAR(50) DEFAULT ''  COMMENT '父ID',
+  like_count          INT DEFAULT 0 COMMENT '点赞数',
+  comment_count       INT DEFAULT 0 COMMENT '评论数',
+  file_id             VARCHAR(400) DEFAULT '' COMMENT '文件ID',
+  audio_id            VARCHAR(400) DEFAULT '' COMMENT '音频ID',
+  create_time         DATETIME COMMENT '创建时间',
+  creator             VARCHAR(40) COMMENT '创建用户',
+  update_time         DATETIME COMMENT '更新时间',
+  modifier            VARCHAR(40) DEFAULT '' COMMENT '更新用户',
+  parent_user_id      VARCHAR(50) DEFAULT '' COMMENT '父评论作者ID',
+  parent_user_name    VARCHAR(500) DEFAULT '' COMMENT '父评论作者名称',
+  file_name           VARCHAR(500) DEFAULT '' COMMENT '文件名',
+  PRIMARY KEY (id)
+)ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
