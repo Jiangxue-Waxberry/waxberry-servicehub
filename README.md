@@ -51,7 +51,7 @@ waxberry-servicehub/
 
 ```bash
 # 克隆仓库
-git clone https://gitee.com/jiangxue-waxberry/waxberry-servicehub.git
+git clone https://github.com/Jiangxue-Waxberry/waxberry-servicehub.git
 
 # 进入项目目录
 cd waxberry-servicehub
