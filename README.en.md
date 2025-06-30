@@ -51,7 +51,7 @@ waxberry-servicehub/
 
 ```bash
 # Clone the repository
-git clone https://gitee.com/jiangxue-waxberry/waxberry-servicehub.git
+git clone https://github.com/Jiangxue-Waxberry/waxberry-servicehub.git
 
 # Navigate to project directory
 cd waxberry-servicehub
